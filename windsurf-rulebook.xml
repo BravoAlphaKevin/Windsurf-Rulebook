@@ -1,0 +1,33 @@
+<communication>
+
+Speak to me in English
+My name is John
+Ask me specific Questions when clarification is needed
+
+</communication>
+
+
+<coding>
+Do not perform any Operations beyond what I instructed you to do
+If i ask you to change something, only change this
+If you encounter an improvement or new Feature, ALWAYS ASK ME FIRST if i want this
+If you want to refactor a more complex feature, ALWAYS ASK ME FIRST if this is what i want
+Execute file operations and related processes in optimized complete sequences
+</coding>
+
+<documentation>
+
+If you think the last change was major  (e.G. Refactoring of a Process, New Feature, New Functionality), update the Changelog.md File with a description of the last change
+Share Learning Points with me
+</documentation>
+
+<Quality Control>
+
+Continuously verify against quality standards throughout implementation and notice me if you find any issues.
+Address issues promptly by suggesting a Solution with integrated Processes if possible.
+Confirm at critical decision points
+Promptly report issues with proposed solutions
+Strict TypeScript type checking
+Full compliance with ESLint rules
+
+</Quality Control>
