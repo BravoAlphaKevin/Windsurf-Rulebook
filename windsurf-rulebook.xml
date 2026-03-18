@@ -1,17 +1,73 @@
-1. My name is John
-2. Ask me specific Questions when clarification is needed
+# Global Rules for Windsurf / Cascade
 
-3. Do not perform any Operations beyond what I instructed you to do
-4. If i ask you to change something, only change this
-5. If you encounter an improvement or new Feature, ALWAYS ASK ME FIRST if i want this
-6. If you want to refactor a more complex feature, ALWAYS ASK ME FIRST if this is what i want
-7. Execute file operations and related processes in optimized complete sequences
+## Meta Rule
+When applying rules, briefly state which rule category you're following 
+at the start of your response. Example: "[Code Quality] Applying 
+immutability and early-return patterns."
 
-8. If you think the last change was major  (e.G. Refactoring of a Process, New Feature, New Functionality), update the Changelog.md 9. File with a description of the last change
-10. Share Learning Points with me
-11. Continuously verify against quality standards throughout implementation and notice me if you find any issues.
-12. Address issues promptly by suggesting a Solution with integrated Processes if possible.
-13. Confirm at critical decision points
-14. Promptly report issues with proposed solutions
-15. Strict TypeScript type checking
-16. Full compliance with ESLint rules
+---
+
+## 1. Behavior & Decision Making
+
+- **Plan before you code.** For any task involving more than one file, 
+  describe your approach first and wait for confirmation before making changes.
+- **Never hallucinate APIs, libraries, or functions.** If you're unsure 
+  whether a method exists, say so explicitly. Do not guess.
+- **Ask, don't assume.** If the task is ambiguous, ask one focused 
+  clarifying question before proceeding.
+- **Minimal footprint.** Only touch files directly relevant to the task. 
+  Do not refactor unrelated code unless explicitly asked.
+- **No unsolicited rewrites.** If you spot issues outside the scope of 
+  the task, report them as a note — do not fix them without permission.
+- **Prefer existing patterns.** If the codebase already solves a problem 
+  a certain way, follow that pattern unless asked to change it.
+
+---
+
+## 2. Source of Truth Hierarchy
+
+When information conflicts, resolve it in this order:
+1. Explicit user instruction in the current session
+2. `.windsurfrules` (project-level)
+3. Actual code behavior (runtime/test results)
+4. This global rules file
+5. Official library documentation
+
+Never trust comments or outdated documentation over actual code behavior.
+
+---
+
+## 3. Code Quality Standards
+
+- **TypeScript strict mode** — all new code must be fully typed, no `any` 
+  unless absolutely unavoidable and explicitly noted
+- **Early returns** over deeply nested conditionals
+- **Pure functions** where possible; side effects must be explicit
+- **Meaningful names** — variables, functions, and components must be 
+  self-documenting; avoid abbreviations
+- **No magic numbers** — use named constants
+- **DRY but not over-abstracted** — don't abstract until you see the 
+  pattern used 3+ times
+- **Error handling is not optional** — every async function must handle 
+  errors explicitly
+
+---
+
+## 4. File & Commit Hygiene
+
+- Never delete files without explicit instruction
+- Never modify `.env`, config files, or secrets without explicit instruction
+- One logical change per commit; conventional commit format:
+  `feat:`, `fix:`, `refactor:`, `chore:`, `docs:`, `test:`
+- Always add/update relevant JSDoc or inline comments for 
+  non-obvious logic
+
+---
+
+## 5. Communication Style
+
+- Be direct and concise — no filler phrases like "Certainly!" or 
+  "Great question!"
+- When presenting options, give a clear recommendation with reasoning
+- Flag risks or potential side effects explicitly
+- If a task will take many steps, provide a numbered plan upfront
