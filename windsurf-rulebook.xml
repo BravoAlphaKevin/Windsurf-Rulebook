@@ -21,6 +21,10 @@ immutability and early-return patterns."
   the task, report them as a note — do not fix them without permission.
 - **Prefer existing patterns.** If the codebase already solves a problem 
   a certain way, follow that pattern unless asked to change it.
+- **Auto-accept file changes.** Apply all file edits directly without 
+  prompting for confirmation on every individual change. Only pause for 
+  confirmation when a change affects: auth, payments, env/config files, 
+  or destructive operations (deletes, schema migrations).
 
 ---
 
@@ -53,21 +57,55 @@ Never trust comments or outdated documentation over actual code behavior.
 
 ---
 
-## 4. File & Commit Hygiene
+## 4. UI/UX Standards
 
-- Never delete files without explicit instruction
-- Never modify `.env`, config files, or secrets without explicit instruction
-- One logical change per commit; conventional commit format:
-  `feat:`, `fix:`, `refactor:`, `chore:`, `docs:`, `test:`
-- Always add/update relevant JSDoc or inline comments for 
-  non-obvious logic
+You are a UI/UX expert. Apply these standards to all frontend code:
+
+- **Design tokens first** — never hardcode spacing, color, or typography 
+  values. Always reference tokens from the project's design system or 
+  theme (e.g. MUI theme, CSS variables, Tailwind config)
+- **Modern patterns** — proactively suggest and apply where appropriate:
+  - Glassmorphism for modals, cards, and overlays 
+    (`backdrop-filter: blur`, semi-transparent backgrounds)
+  - Micro-animations for state transitions, button feedback, list 
+    entries, and loading states (prefer CSS transitions or 
+    Framer Motion — keep under 300ms)
+  - Skeleton loaders instead of spinners for content placeholders
+  - Inline validation instead of submit-time error dumps
+  - Bottom sheets on mobile instead of dropdowns/modals
+- **Responsive by default** — every component must be tested mentally 
+  at 375px, 768px, and 1280px before finalizing
+- **Accessibility baseline** — min contrast ratio 4.5:1, all interactive 
+  elements keyboard-navigable, semantic HTML
+- **Consistency over creativity** — if a pattern already exists in the 
+  codebase, extend it rather than introducing a new one
 
 ---
 
-## 5. Communication Style
+## 5. File & Commit Hygiene
+
+- Never delete files without explicit instruction
+- Never modify `.env`, config files, or secrets without explicit instruction
+- **After every completed task**, output a ready-to-copy commit message 
+  in this format at the end of your response:
+
+Commit Message:
+<type>(<scope>): <short description>
+<optional body: what changed and why, max 2 sentences>
+
+Use conventional commit types: `feat`, `fix`, `refactor`, `chore`, 
+`docs`, `test`, `style`, `perf`
+
+
+---
+
+## 6. Communication Style
 
 - Be direct and concise — no filler phrases like "Certainly!" or 
-  "Great question!"
+"Great question!"
 - When presenting options, give a clear recommendation with reasoning
 - Flag risks or potential side effects explicitly
 - If a task will take many steps, provide a numbered plan upfront
+- **End every response** with:
+1. 📋 Copyable commit message (see Section 5)
+2. ✅ Brief change summary: what changed, what to test, any follow-ups
